@@ -6,60 +6,60 @@
     <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
   </head>
   <body>
-  <main class="page">
-  <section class="image">
-    <figure class="image__figure">
-      <img src="./eisenhower-matrix.jpg" alt="scheme of eisenhower matrix" class="image__img">
-      <figcaption>
-        <a class="image__link" href="https://goal-life.com/page/method/matrix-eisenhower">Want more details?</a>
-      </figcaption>
-    </figure>
-  </section>
-  <section class="todo">
-    <div class="todo__add-task">
-      <p id="topSectionForAddingElementToList">
-        <label for="new-task" class="task-label">Add Item</label>
-      </p>
-      <div class="task-row-wrapper">
-        <input id="new-task" class="task-input todo__input" type="text">
-        <button class="button-add">Add</button>
-      </div>
-    </div>
-    <h3 class="todo__title">Todo</h3>
-    <ul id="incompleteTasks" class="todo__list todo__list--incomplete">
-      <li class="todo__item">
-        <input type="checkbox"class="todo__checkbox">
-        <label class="todo__text">Pay Bills</label>
-        <input type="text" class="todo__input todo__input--edit">
-        <button class="todo__button todo__button--edit">Edit</button>
-        <button class="todo__button todo__button--delete">
-          <img src="./remove.svg" class="todo__icon">
-        </button>
-      </li>
-      <li class="todo__item todo__item--edit-mode">
-        <input type="checkbox" class="todo__checkbox">
-        <label class="todo__text">Go Shopping</label>
-        <input type="text" class="todo__input todo__input--edit" value="Go Shopping">
-        <button class="todo__button todo__button--edit">Save</button>
-        <button class="todo__button todo__button--delete">
-          <img src="./remove.svg" class="todo__icon">
-        </button>
-      </li>
-    </ul>
-    <h3 class="todo__title">Completed</h3>
-    <ul id="completed-tasks" class="todo__list todo__list--completed">
-      <li class="todo__item">
-        <input type="checkbox" class="todo__checkbox" checked>
-        <label class="todo__text">See the Doctor</label>
-        <input type="text" class="todo__input todo__input--edit">
-        <button class="todo__button todo__button--edit">Edit</button>
-        <button class="todo__button todo__button--delete">
-          <img src="./remove.svg">
-        </button>
-      </li>
-    </ul>
-  </section>
-  </main>
-<script src="app.js"></script>
-</body>
+    <main class="page">
+      <section class="image">
+        <figure class="image__figure">
+          <img src="./eisenhower-matrix.jpg" alt="scheme of eisenhower matrix" class="image__img">
+          <figcaption>
+            <a class="image__link" href="https://goal-life.com/page/method/matrix-eisenhower">Want more details?</a>
+          </figcaption>
+        </figure>
+      </section>
+      <section class="todo">
+        <div class="todo__add-task">
+          <p id="topSectionForAddingElementToList">
+            <label for="new-task" class="task-label">Add Item</label>
+          </p>
+          <div class="task-row-wrapper">
+            <input id="new-task" class="task-input todo__input" type="text">
+            <button class="button-add">Add</button>
+          </div>
+        </div>
+        <h3 class="todo__title">Todo</h3>
+        <ul id="incompleteTasks" class="todo__list todo__list--incomplete">
+          <li class="todo__item">
+            <input type="checkbox"class="todo__checkbox">
+            <label class="todo__text">Pay Bills</label>
+            <input type="text" class="todo__input todo__input--edit">
+            <button class="todo__button todo__button--edit">Edit</button>
+            <button class="todo__button todo__button--delete">
+              <img src="./remove.svg" class="todo__icon">
+            </button>
+          </li>
+          <li class="todo__item todo__item--edit-mode">
+            <input type="checkbox" class="todo__checkbox">
+            <label class="todo__text">Go Shopping</label>
+            <input type="text" class="todo__input todo__input--edit" value="Go Shopping">
+            <button class="todo__button todo__button--edit">Save</button>
+            <button class="todo__button todo__button--delete">
+              <img src="./remove.svg" class="todo__icon">
+            </button>
+          </li>
+        </ul>
+        <h3 class="todo__title">Completed</h3>
+        <ul id="completed-tasks" class="todo__list todo__list--completed">
+          <li class="todo__item">
+            <input type="checkbox" class="todo__checkbox" checked>
+            <label class="todo__text">See the Doctor</label>
+            <input type="text" class="todo__input todo__input--edit">
+            <button class="todo__button todo__button--edit">Edit</button>
+            <button class="todo__button todo__button--delete">
+              <img src="./remove.svg">
+            </button>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
