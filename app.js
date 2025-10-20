@@ -15,18 +15,31 @@ var completedTasksHolder = document.getElementById("completed-tasks"); // UL of 
 // New task list item
 var createNewTaskElement = function (taskString) {
   var listItem = document.createElement("li");
-  listItem.className = "task-item";
+  listItem.className = "todo__item";
 
   // input (checkbox)
   var checkBox = document.createElement("input"); // checkbox
+  checkBox.type = "checkbox";
+  checkBox.className = "todo__checkbox";
+
   // label
   var label = document.createElement("label"); // label
+  label.innerText = taskString;
+  label.className = "todo__text";
+
   // input (text)
   var editInput = document.createElement("input"); // text input
+  editInput.type = "text";
+  editInput.className = "todo__input";
+
   // button.edit
   var editButton = document.createElement("button"); // edit button
+  editButton.className = "todo__button--edit";
+  editButton.innerText = "Edit";
+
   // button.delete
   var deleteButton = document.createElement("button"); // delete button
+  deleteButton.className = "todo__button--delete";
   var deleteButtonImg = document.createElement("img"); // delete button image
 
   label.innerText = taskString;
@@ -75,16 +88,13 @@ var addTask = function () {
 // Edit an existing task
 var editTask = function () {
   console.log("Edit Task...");
-  console.log("Change 'Edit' to 'Save'");
-
-  var listItem = this.parentNode;
-  var editInput = listItem.querySelector(".task-input");
-  var label = listItem.querySelector(".task-text");
-  var editBtn = listItem.querySelector(".button-edit");
-  var containsClass = listItem.classList.contains("edit-mode");
+  var listItem = this.parentNode; // Edit button -> parent li
+  var editInput = listItem.querySelector(".todo__input");
+  var label = listItem.querySelector(".todo__text");
+  var editBtn = listItem.querySelector(".todo__button--edit");
 
   // If the parent has class .edit-mode
-  if (containsClass) {
+  if (listItem.classList.contains("edit-mode")) {
     // Switch from .edit-mode to normal mode
     // Label becomes the input's value
     label.innerText = editInput.value;
@@ -103,8 +113,7 @@ var editTask = function () {
 // Delete task
 var deleteTask = function () {
   console.log("Delete Task...");
-
-  var listItem = this.parentNode;
+var listItem = this.closest(".todo__item");
   var ul = listItem.parentNode;
 
   // Remove the parent list item from the ul
@@ -114,10 +123,11 @@ var deleteTask = function () {
 // Mark task as completed
 var taskCompleted = function () {
   console.log("Complete Task...");
+  
 
   // Append the task list item to the #completed-tasks
   var listItem = this.parentNode;
-  completedTasksHolder.appendChild(listItem);
+  completedTasksHolder.appendChild(listItem); // просто перемещаем элемент
   bindTaskEvents(listItem, taskIncomplete);
 };
 
@@ -128,7 +138,7 @@ var taskIncomplete = function () {
   // When the checkbox is unchecked,
   // append the task list item back to the #incompleteTasks
   var listItem = this.parentNode;
-  incompleteTaskHolder.appendChild(listItem);
+  incompleteTaskHolder.appendChild(listItem); // просто перемещаем элемент
   bindTaskEvents(listItem, taskCompleted);
 };
 
@@ -137,11 +147,9 @@ var ajaxRequest = function () {
   console.log("AJAX Request");
 };
 
-// The glue to hold everything together
-
-// Set the click handler for the addTask function (no duplication)
+// Set the click handler for the addTask function
 addButton.addEventListener("click", function (e) {
-  e.preventDefault(); // Prevent form submission / reload
+  e.preventDefault();
   addTask();
   ajaxRequest();
 });
@@ -150,32 +158,28 @@ addButton.addEventListener("click", function (e) {
 var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   console.log("Bind list item events");
 
-  // Select list item's children
-  var checkBox = taskListItem.querySelector(".task-checkbox");
-  var editButton = taskListItem.querySelector(".button-edit");
-  var deleteButton = taskListItem.querySelector(".button-delete");
+  var checkBox = taskListItem.querySelector(".todo__checkbox");
+  var editButton = taskListItem.querySelector(".todo__button--edit");
+  var deleteButton = taskListItem.querySelector(".todo__button--delete");
 
   // Bind editTask to the edit button
   if (editButton) editButton.onclick = editTask;
+
   // Bind deleteTask to the delete button
   if (deleteButton) deleteButton.onclick = deleteTask;
+
   // Bind taskCompleted/taskIncomplete to the checkbox
   if (checkBox) checkBox.onchange = checkBoxEventHandler;
 };
 
-// Cycle over incompleteTaskHolder list items
-// and bind events to each one
+// Initialize existing tasks in Todo
 for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
   bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
 }
 
-// Cycle over completedTasksHolder list items
-// and bind events to each one
+// Initialize existing tasks in Completed
 for (var i = 0; i < completedTasksHolder.children.length; i++) {
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
 }
 
-// Issues with usability don’t get seen until they are tested by a real user.
-// Prevent creation of empty tasks.
-// Change "Edit" to "Save" when in edit mode.
-console.log("Todo App initialized successfully ");
+console.log("Todo App initialized successfully");
